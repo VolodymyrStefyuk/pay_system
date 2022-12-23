@@ -1,22 +1,32 @@
-<h2>sing in</h2>
+<h2>sing on</h2>
 <%= form_for :user, url: users_path do |f|%>
-<p>
-login <br>
-<%= f.text_field :name %>
-</p>
-<p>
-password <br>
-<%= f.password_field :password %>
-</p>
-<p>
-confirm password <br>
-<%= f.password_field :confirmPassword %>
-</p>
-<p>
-number <br>
-<%= f.text_field :accountNumber %>
-</p>
-<p>
-<%= f.submit %>
-</p>
+    <p>
+        login <br>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        password <br>
+        <%= f.password_field :password %>
+    </p>
+    <p>
+        confirm password <br>
+        <%= f.password_field :password_confirmation %>
+    </p>
+    <p>
+        number <br>
+        <%= f.text_field :accountNumber %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+
 <% end %>
+ 
+<% if @user.errors.any? %>
+
+
+<% @user.errors.full_messages.each do |msg|%>
+<div class="alert alert-danger"><%= msg %></div>
+<% end %>
+<% end %>
+

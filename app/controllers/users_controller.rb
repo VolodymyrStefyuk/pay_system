@@ -1,21 +1,27 @@
 class UsersController < ApplicationController
 
     def index
-        end
-        def new #створюємо новий пост
-        end
+    end
 
     def show
-         @user = User.find(params[:id]) #шукаємо необхідний пост в базі даних і беремо його по ID
-         end
+         @user = User.find(params[:id]) 
+    end
+
     def create
-            @user=User.new(user_params) 
-            @user.save 
-        end
+        @user = User.new(user_params)
+          if @user.save
+            redirect_to user_path
+          else
+            render 'new'
+          end
+    end
+
+    def new
+        @user = User.new
+    end
+
     private
         def user_params
-
             params.require(:user).permit(:name, :password,:accountNumber)
         end
-
 end
